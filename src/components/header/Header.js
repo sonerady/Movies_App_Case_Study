@@ -12,7 +12,7 @@ const headerNav = [
   },
   {
     name: "Populer",
-    path: "/movie",
+    path: "/popular",
   },
   {
     name: "Upcoming",
@@ -24,7 +24,7 @@ const Header = () => {
   const { pathname } = useLocation();
   const headerRef = useRef(null);
 
-  const active = headerNav.findIndex((item) => item.path === pathname);
+  const active = headerNav.findIndex((item) => item.path == pathname);
 
   useEffect(() => {
     const shrinkHeader = () => {
