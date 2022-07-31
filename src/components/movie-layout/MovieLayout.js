@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import styles from "./movieLayout.module.scss";
 import MovieCard from "../../components/movie-card/MovieCard";
+import { OutlineButton } from "../../components/button/Button";
 import tmdbApi, { category, movieType } from "../../api/tmdbApi";
 import { useParams } from "react-router-dom";
 
@@ -40,12 +41,50 @@ const MovieLayout = (props) => {
     getList();
   }, [props.category, keyword]);
 
+  const loadMore = async () => {
+    let response = null;
+    if (keyword === undefined) {
+      const params = {
+        page: page + 1,
+      };
+      switch (props.category) {
+        case category.movie:
+          response = await tmdbApi.getMoviesList(movieType.upcoming, {
+            params,
+          });
+          break;
+        default:
+          response = await tmdbApi.getMoviesList(movieType.popular, {
+            params,
+          });
+          console.log("params", params);
+      }
+    } else {
+      const params = {
+        page: page + 1,
+        query: keyword,
+      };
+      response = await tmdbApi.search(props.category, { params });
+    }
+    setItems([...items, ...response.results]);
+    setPage(page + 1);
+  };
+
   return (
-    <div className={styles.movie_grid}>
-      {items.map((item, index) => {
-        return <MovieCard key={index} category={props.category} item={item} />;
-      })}
-    </div>
+    <>
+      <div className={styles.movie_grid}>
+        {items.map((item, index) => {
+          return (
+            <MovieCard key={index} category={props.category} item={item} />
+          );
+        })}
+      </div>
+      {page < totalPage && (
+        <div onClick={loadMore} className={styles.movie_grid__loadmore}>
+          <OutlineButton className={styles.small}>Load More</OutlineButton>
+        </div>
+      )}
+    </>
   );
 };
 

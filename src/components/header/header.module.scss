@@ -28,12 +28,15 @@
 
   &.shrink {
     height: $header-shrink-height;
-    background-color: $body-bg;
+    background-color: rgba(0, 0, 0, 0);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.274);
+    backdrop-filter: blur(8px);
   }
 
   &__wrap {
     @include flex(center, space-between);
     height: 100%;
+
     padding: 0 2rem;
 
     @include mobile {

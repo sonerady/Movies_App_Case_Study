@@ -11,8 +11,8 @@ const headerNav = [
     path: "/",
   },
   {
-    name: "Populer",
-    path: "/popular",
+    name: "Popular",
+    path: "/movie",
   },
   {
     name: "Upcoming",

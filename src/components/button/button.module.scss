@@ -11,7 +11,7 @@ button {
   color: $light;
   border-radius: $border-radius;
   padding: 0.5rem 1.8rem;
-  font-size: 1.5rem;
+  font-size: 1rem;
   font-weight: 600;
   box-shadow: 0px 0px 7px 8px #ea00ff4d;
 }
@@ -27,7 +27,7 @@ button {
 .btn_outline:hover {
   box-shadow: unset;
   color: $main-color;
-  background-color: $light;
+  border-color: $main-color;
 }
 
 .btn.small {

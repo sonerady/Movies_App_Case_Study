@@ -13,7 +13,7 @@ const Button = (props) => {
   );
 };
 
-const outline = (props) => {
+export const OutlineButton = (props) => {
   return (
     <Button
       className={`${styles.btn_outline} ${props.className}`}
