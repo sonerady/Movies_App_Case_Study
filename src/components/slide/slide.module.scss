@@ -1,0 +1,54 @@
+@use "../../scss/index" as *;
+
+.wrapper {
+  position: relative;
+  @include flex(center, center);
+  img:nth-child(1) {
+    opacity: 0.8;
+  }
+  .content {
+    background-color: rgba(255, 255, 255, 0.034);
+    backdrop-filter: blur(10px);
+    position: absolute;
+    width: 40%;
+    border-radius: $border-radius;
+    border: 1px solid #ffffff44;
+    padding: 1rem;
+    top: 20%;
+    height: 50%;
+    transition: all 0.5s ease-in-out;
+    flex-direction: column;
+    @include flex(center, center);
+    .content_texts {
+      .button_wrapper {
+        width: fit-content;
+        margin-top: 3rem;
+        gap: 1rem;
+        display: flex;
+        button {
+          border-radius: $border-radius;
+          padding: 0.5rem;
+          width: 120px;
+          box-shadow: $button-shadow;
+          cursor: pointer;
+          transition: all 0.3s;
+          font-weight: bold;
+        }
+        button:nth-child(1) {
+          background-color: $main-color;
+          color: $light;
+          border: none;
+        }
+        button:nth-child(2) {
+          background: none;
+          color: $light;
+          border: 2px solid $main-color;
+        }
+      }
+    }
+    h1 {
+      font-size: 3rem;
+      font-weight: 500;
+    }
+  }
+}

@@ -12,8 +12,8 @@ export const movieType = {
 };
 
 export const tvType = {
-  upcoming: "upcoming",
   popular: "popular",
+  top_rated: "top_rated",
   on_the_air: "on_the_air",
 };
 
@@ -31,7 +31,7 @@ const tmdbApi = {
     return axiosClient.get(url, { params: {} });
   },
   search: (cate, params) => {
-    const url = category[cate] + "/search";
+    const url = "search/" + category[cate];
     return axiosClient.get(url, params);
   },
   detail: (cate, id, params) => {
