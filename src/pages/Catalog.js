@@ -7,8 +7,6 @@ import TopHeader from "../components/top-header/TopHeader";
 const Catalog = () => {
   const { category } = useParams();
 
-  console.log(category);
-
   return (
     <>
       <TopHeader>

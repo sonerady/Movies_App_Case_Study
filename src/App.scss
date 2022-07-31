@@ -39,12 +39,6 @@ a {
   text-decoration: none;
 }
 
-@media (hover: hover) {
-  a:hover {
-    color: $main-color;
-  }
-}
-
 button,
 input {
   outline: 0;

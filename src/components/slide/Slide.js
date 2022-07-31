@@ -21,10 +21,7 @@ const Slide = () => {
           params,
         });
         setMovieItems(response.results.slice(0, 1));
-        console.log(response);
-      } catch {
-        console.log("error");
-      }
+      } catch {}
     };
     getMovies();
   }, []);

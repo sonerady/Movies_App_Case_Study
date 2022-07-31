@@ -18,12 +18,17 @@
   .card_footer {
     background-color: rgba(255, 255, 255, 0);
     backdrop-filter: blur(5px);
-    border-top: 1px solid $light;
+    border-top: 2px solid $light;
     font-weight: bold;
     border-bottom-left-radius: $border-radius;
     border-bottom-right-radius: $border-radius;
     padding: 0.5rem;
     height: 4rem;
+
+    .release_date {
+      font-size: 0.8rem;
+      font-weight: 500;
+    }
   }
   @media (hover: hover) {
     &:hover::before {

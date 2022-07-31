@@ -2,7 +2,7 @@ import React from "react";
 import styles from "./card.module.scss";
 import { Link } from "react-router-dom";
 import Button from "../button/Button";
-
+import moment from "moment";
 import { category } from "../../api/tmdbApi";
 import apiConfig from "../../api/apiConfig";
 
@@ -11,7 +11,6 @@ const MovieCard = (props) => {
   console.log(item);
 
   const link = "/" + category[props.category] + "/" + item.id;
-
   const bg = apiConfig.w500Image(item.poster_path || item.backdrop_path);
 
   return (
@@ -20,7 +19,11 @@ const MovieCard = (props) => {
         className={styles.movie_card}
         style={{ backgroundImage: `url(${bg})` }}
       >
-        <div className={styles.card_footer}>icon</div>
+        <div className={styles.card_footer}>
+          <span className={styles.release_date}>
+            Release date : {moment(item.release_date).fromNow()}
+          </span>
+        </div>
       </div>
       <h3>{item.title || item.name}</h3>
     </Link>
