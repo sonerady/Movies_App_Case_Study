@@ -11,7 +11,9 @@ const Catalog = () => {
 
   return (
     <>
-      <TopHeader>{category === cate.movie && "Moviess"}</TopHeader>
+      <TopHeader>
+        {category === cate.movie ? "Populer Movies" : "Upcoming Movies"}
+      </TopHeader>
       <div className="container">
         <div className="section mb-3">
           <MovieLayout category={category} />

@@ -19,12 +19,12 @@ const MovieLayout = (props) => {
         const params = {};
         switch (props.category) {
           case category.movie:
-            response = await tmdbApi.getMoviesList(movieType.upcoming, {
+            response = await tmdbApi.getMoviesList(movieType.popular, {
               params,
             });
             break;
           default:
-            response = await tmdbApi.getMoviesList(movieType.popular, {
+            response = await tmdbApi.getMoviesList(movieType.upcoming, {
               params,
             });
         }
@@ -41,7 +41,7 @@ const MovieLayout = (props) => {
   }, [props.category, keyword]);
 
   return (
-    <div >
+    <div className={styles.movie_grid}>
       {items.map((item, index) => {
         return <MovieCard key={index} category={props.category} item={item} />;
       })}

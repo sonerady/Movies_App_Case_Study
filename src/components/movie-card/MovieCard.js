@@ -8,6 +8,7 @@ import apiConfig from "../../api/apiConfig";
 
 const MovieCard = (props) => {
   const item = props.item;
+  console.log(item);
 
   const link = "/" + category[props.category] + "/" + item.id;
 
@@ -19,9 +20,9 @@ const MovieCard = (props) => {
         className={styles.movie_card}
         style={{ backgroundImage: `url(${bg})` }}
       >
-        <Button>icon</Button>
-        <h3>{item.title || item.name}</h3>
+        <div className={styles.card_footer}>icon</div>
       </div>
+      <h3>{item.title || item.name}</h3>
     </Link>
   );
 };
