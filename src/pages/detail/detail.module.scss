@@ -1,0 +1,108 @@
+@use "../../scss/" as *;
+
+.container {
+  position: relative;
+  .content_wrapper {
+    background-color: rgba(255, 255, 255, 0.027);
+    backdrop-filter: blur(10px);
+    border-radius: $border-radius;
+    border: 1px solid rgba(255, 255, 255, 0.274);
+    padding: 0.8rem;
+    position: absolute;
+    top: 25%;
+    left: 25%;
+    width: 50%;
+    margin-top: 3rem;
+    height: 90%;
+    @include mobile {
+      width: 84%;
+      position: absolute;
+      margin-top: 0rem !important;
+      left: 8%;
+    }
+    @include tablet {
+      width: 84%;
+      position: absolute;
+      margin-top: 0rem !important;
+      left: 8%;
+    }
+    h2 {
+      font-size: 3.5rem;
+      font-weight: 600;
+    }
+    p {
+      margin-top: 2rem;
+    }
+    .catst {
+      margin-top: 3rem;
+    }
+    .genres_wrapper {
+      width: fit-content;
+      gap: 1rem;
+      flex-wrap: wrap;
+      display: flex;
+
+      span {
+        @include flex(center, center);
+        border: 1px solid $light;
+        border-radius: $border-radius;
+        padding: 0.2rem 0.5rem;
+        width: 100px;
+      }
+    }
+  }
+  .banner {
+    position: relative;
+    height: 65vh !important;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+
+    &::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      @include overlay();
+    }
+
+    &::after {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 100px;
+      background-image: linear-gradient(to top, $body-bg, rgba($dark, 0));
+    }
+  }
+
+  .movie_content {
+    @include flex(flex-start, flex-start);
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: -200px;
+    position: relative;
+    padding: 0 2rem;
+
+    &__poster {
+      flex: 1;
+      @include mobile {
+        display: none;
+      }
+      &__img {
+        background-position: center;
+        background-size: cover;
+        background-repeat: no-repeat;
+        border-radius: $border-radius;
+        padding-top: 60%;
+      }
+      &__info {
+        width: 70% !important;
+      }
+    }
+  }
+}
