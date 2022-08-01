@@ -11,8 +11,8 @@
 
     @include mobile {
       width: 84%;
+      top: 15%;
       position: absolute;
-      margin-top: 0rem !important;
       left: 8%;
       height: auto !important;
       padding-bottom: 2rem;
@@ -22,7 +22,12 @@
       position: absolute;
       margin-top: 0rem !important;
       left: 8%;
+      top: 15%;
+
       height: auto !important;
+    }
+    .top_content {
+      @include flex(flex-start, space-between);
     }
     .dates {
       margin-bottom: 1rem;

@@ -16,7 +16,9 @@ const MovieLayout = (props) => {
 
   const { keyword } = useParams();
 
-  const [sortBy, setSortBy] = useState("");
+  const [urlNumber, setUrlNumber] = useState();
+
+  const [sortBy, setSortBy] = useState("asc_popularity");
 
   console.log("sortBy", sortBy);
 
@@ -66,7 +68,6 @@ const MovieLayout = (props) => {
           response = await tmdbApi.getMoviesList(movieType.upcoming, {
             params,
           });
-          console.log("params", params);
       }
     } else {
       const params = {
@@ -85,6 +86,7 @@ const MovieLayout = (props) => {
         loadMore();
       }
     };
+
     window.addEventListener("scroll", onScroll);
     return () => window.removeEventListener("scroll", onScroll);
   });
@@ -114,7 +116,12 @@ const MovieLayout = (props) => {
       <div className={styles.movie_grid}>
         {sortedItems.map((item, index) => {
           return (
-            <MovieCard key={index} category={props.category} item={item} />
+            <MovieCard
+              param
+              key={index}
+              category={props.category}
+              item={item}
+            />
           );
         })}
       </div>
@@ -170,9 +177,8 @@ const MovieSearch = (props) => {
         }}
         className={styles.small}
       >
-        <option value="">Sort By</option>
         <option value="asc_popularity">Asc. Popularity</option>
-        <option value="desc_popularity">Decs. Popularity</option>
+        <option value="desc_popularity">Dec. Popularity</option>
         <option value="inc_average">Inc. Vote </option>
         <option value="dec_average">Dec. Vote </option>
       </select>

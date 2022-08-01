@@ -3,15 +3,17 @@ import { useParams } from "react-router-dom";
 import moment from "moment";
 import tmdbApi from "../../api/tmdbApi";
 import apiConfig from "../../api/apiConfig";
-
+import { OutlineButton } from "../../components/button/Button";
 import styles from "./detail.module.scss";
 import CastList from "./components/CastList";
+import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const Detail = () => {
   const { category, id } = useParams();
 
   const [item, setItem] = useState(null);
-
+  const navigate = useNavigate();
   useEffect(() => {
     const getDetail = async () => {
       const response = await tmdbApi.detail(category, id, { params: {} });
@@ -34,7 +36,12 @@ const Detail = () => {
             }}
           ></div>
           <div className={styles.content_wrapper}>
-            <h2>{item.title || item.name}</h2>
+            <div className={styles.top_content}>
+              <h2>{item.title || item.name}</h2>
+              <div onClick={() => navigate(-1)}>
+                <OutlineButton>back</OutlineButton>
+              </div>
+            </div>
             <span className={styles.dates}>
               Release Date: {moment(item.release_date).fromNow()}
             </span>
