@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-
+import moment from "moment";
 import tmdbApi from "../../api/tmdbApi";
 import apiConfig from "../../api/apiConfig";
 
@@ -35,6 +35,9 @@ const Detail = () => {
           ></div>
           <div className={styles.content_wrapper}>
             <h2>{item.title || item.name}</h2>
+            <span className={styles.dates}>
+              Release Date: {moment(item.release_date).fromNow()}
+            </span>
             <div className={styles.genres_wrapper}>
               {item.genres &&
                 item.genres

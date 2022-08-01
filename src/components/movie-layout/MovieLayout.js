@@ -18,6 +18,8 @@ const MovieLayout = (props) => {
 
   const [sortBy, setSortBy] = useState("");
 
+  console.log("sortBy", sortBy);
+
   useEffect(() => {
     const getList = async () => {
       let response = null;
@@ -89,9 +91,13 @@ const MovieLayout = (props) => {
 
   const sortedItems =
     (sortBy === "" && items) ||
-    (sortBy === "popularity" &&
+    (sortBy === "desc_popularity" &&
+      items.sort((a, b) => a.popularity - b.popularity)) ||
+    (sortBy === "asc_popularity" &&
       items.sort((a, b) => b.popularity - a.popularity)) ||
-    (sortBy === "vote_average" &&
+    (sortBy === "dec_average" &&
+      items.sort((a, b) => a.vote_average - b.vote_average)) ||
+    (sortBy === "inc_average" &&
       items.sort((a, b) => b.vote_average - a.vote_average));
 
   return (
@@ -165,8 +171,10 @@ const MovieSearch = (props) => {
         className={styles.small}
       >
         <option value="">Sort By</option>
-        <option value="popularity">Growing Popularity</option>
-        <option value="vote_average">Vote Average</option>
+        <option value="asc_popularity">Asc. Popularity</option>
+        <option value="desc_popularity">Decs. Popularity</option>
+        <option value="inc_average">Inc. Vote </option>
+        <option value="dec_average">Dec. Vote </option>
       </select>
     </div>
   );
