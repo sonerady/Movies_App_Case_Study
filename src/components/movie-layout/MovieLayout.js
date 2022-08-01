@@ -1,7 +1,8 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import styles from "./movieLayout.module.scss";
 import MovieCard from "../../components/movie-card/MovieCard";
 import { OutlineButton } from "../../components/button/Button";
+import InfiniteScroll from "react-infinite-scroller";
 import tmdbApi, { category, movieType } from "../../api/tmdbApi";
 import { useParams } from "react-router-dom";
 
@@ -13,6 +14,9 @@ const MovieLayout = (props) => {
   const [totalPage, setTotalPage] = useState(0);
 
   const { keyword } = useParams();
+
+  let oldScrollY = 0;
+
   useEffect(() => {
     const getList = async () => {
       let response = null;
@@ -70,6 +74,15 @@ const MovieLayout = (props) => {
     setPage(page + 1);
   };
 
+  useEffect(() => {
+    const onScroll = function () {
+      if (window.innerHeight + window.scrollY >= document.body.offsetHeight) {
+        loadMore();
+      }
+    };
+    window.addEventListener("scroll", onScroll);
+    return () => window.removeEventListener("scroll", onScroll);
+  });
   return (
     <>
       <div className={styles.movie_grid}>
