@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef, useCallback } from "react";
 import styles from "./movieLayout.module.scss";
 import MovieCard from "../../components/movie-card/MovieCard";
-import { OutlineButton } from "../../components/button/Button";
+import Button, { OutlineButton } from "../../components/button/Button";
 import InfiniteScroll from "react-infinite-scroller";
 import tmdbApi, { category, movieType } from "../../api/tmdbApi";
 import { useParams } from "react-router-dom";
@@ -84,6 +84,9 @@ const MovieLayout = (props) => {
   });
   return (
     <>
+      <div className=" mb-3">
+        <MovieSearch category={props.category} keyword={keyword} />
+      </div>
       <div className={styles.movie_grid}>
         {items.map((item, index) => {
           return (
@@ -97,6 +100,45 @@ const MovieLayout = (props) => {
         </div>
       )}
     </>
+  );
+};
+
+const MovieSearch = (props) => {
+  const navigate = useNavigate();
+
+  const [keyword, setKeyword] = useState(props.keyword ? props.keyword : "");
+
+  const goToSearch = useCallback(() => {
+    if (keyword.trim().length > 0) {
+      navigate(`/${category[props.category]}/search/${keyword}`);
+    }
+  }, [keyword, props.category, navigate]);
+
+  useEffect(() => {
+    const enterEvent = (e) => {
+      e.preventDefault();
+      if (e.keyCode === 13) {
+        goToSearch();
+      }
+    };
+    document.addEventListener("keyup", enterEvent);
+    return () => {
+      document.removeEventListener("keyup", enterEvent);
+    };
+  }, [keyword, goToSearch]);
+
+  return (
+    <div className={styles.movie_search}>
+      <Input
+        type="text"
+        placeholder="Enter keyword"
+        value={keyword}
+        onChange={(e) => setKeyword(e.target.value)}
+      />
+      <button className={styles.small} onClick={goToSearch}>
+        Search
+      </button>
+    </div>
   );
 };
 
