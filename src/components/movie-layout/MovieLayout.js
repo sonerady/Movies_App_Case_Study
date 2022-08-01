@@ -1,11 +1,12 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, useCallback } from "react";
 import styles from "./movieLayout.module.scss";
 import MovieCard from "../../components/movie-card/MovieCard";
 import { OutlineButton } from "../../components/button/Button";
 import InfiniteScroll from "react-infinite-scroller";
 import tmdbApi, { category, movieType } from "../../api/tmdbApi";
 import { useParams } from "react-router-dom";
-
+import Input from "../../components/input/Input";
+import { useNavigate } from "react-router-dom";
 const MovieLayout = (props) => {
   const [items, setItems] = useState([]);
 
@@ -14,8 +15,6 @@ const MovieLayout = (props) => {
   const [totalPage, setTotalPage] = useState(0);
 
   const { keyword } = useParams();
-
-  let oldScrollY = 0;
 
   useEffect(() => {
     const getList = async () => {
@@ -29,7 +28,7 @@ const MovieLayout = (props) => {
             });
             break;
           default:
-            response = await tmdbApi.getMoviesList(movieType.upcoming, {
+            response = await tmdbApi.getMoviesList(movieType.top_rated, {
               params,
             });
         }
@@ -53,12 +52,12 @@ const MovieLayout = (props) => {
       };
       switch (props.category) {
         case category.movie:
-          response = await tmdbApi.getMoviesList(movieType.upcoming, {
+          response = await tmdbApi.getMoviesList(movieType.popular, {
             params,
           });
           break;
         default:
-          response = await tmdbApi.getMoviesList(movieType.popular, {
+          response = await tmdbApi.getMoviesList(movieType.upcoming, {
             params,
           });
           console.log("params", params);

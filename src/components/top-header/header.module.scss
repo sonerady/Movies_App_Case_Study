@@ -1,17 +1,19 @@
-@use "../../scss/variables" as *;
+@use "../../scss/" as *;
 
 .page_header {
   padding: $header-height 0 2rem;
   text-align: center;
   margin-bottom: 2rem;
+  height: 400px !important;
   position: relative;
   background-position: top;
-  background-size: cover;
-  background-repeat: no-repeat;
-
+  background-size: cover !important;
+  background-repeat: no-repeat !important;
+  @include flex(center, center);
   h2 {
     position: relative;
     z-index: 99;
+    font-size: 3rem;
   }
 
   &::after {

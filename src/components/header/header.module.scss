@@ -23,14 +23,16 @@
   top: 0;
   left: 0;
   width: 100%;
-  z-index: 99;
+  z-index: 100;
   transition: height 0.3s ease, background-color 0.3s ease;
+  background-image: linear-gradient(to bottom, #211427, rgba(#211427, 0));
 
   &.shrink {
     height: $header-shrink-height;
     background-color: rgba(0, 0, 0, 0);
     border-bottom: 1px solid rgba(255, 255, 255, 0.274);
     backdrop-filter: blur(8px);
+    background-image: none;
   }
 
   &__wrap {
@@ -47,12 +49,12 @@
   &__nav {
     @include flex(center, unset);
 
-    gap: 1rem;
+    gap: 4rem;
     li {
       padding: 5px 0;
       font-weight: 700;
       position: relative;
-      font-size: 1.5rem;
+      font-size: 1rem;
 
       &::after {
         content: "";

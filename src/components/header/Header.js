@@ -11,12 +11,8 @@ const headerNav = [
     path: "/",
   },
   {
-    name: "Popular",
+    name: "Popular Movies",
     path: "/movie",
-  },
-  {
-    name: "Upcoming",
-    path: "/upcoming",
   },
 ];
 
@@ -63,6 +59,7 @@ const Header = () => {
             );
           })}
         </ul>
+        <span>language</span>
       </div>
     </div>
   );
