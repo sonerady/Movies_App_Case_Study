@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import styles from "./card.module.scss";
 import { Link } from "react-router-dom";
+import { AiFillStar } from "react-icons/ai";
 import Button from "../button/Button";
 import moment from "moment";
 import { category } from "../../api/tmdbApi";
@@ -32,10 +33,17 @@ const MovieCard = (props) => {
           className={styles.movie_card}
           style={{ backgroundImage: `url(${bg})` }}
         >
-          <div className={styles.card_footer}>
+          <div
+            className={styles.card_footer}
+            style={{ display: "flex", flexDirection: "column" }}
+          >
             <h3>{item.title || item.name}</h3>
             <span className={styles.release_date}>
               R. date : {moment(item.release_date).fromNow()}
+            </span>
+            <span>
+              <AiFillStar />
+              {item.vote_average}
             </span>
           </div>
         </div>

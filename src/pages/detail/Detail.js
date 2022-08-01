@@ -5,6 +5,7 @@ import tmdbApi from "../../api/tmdbApi";
 import apiConfig from "../../api/apiConfig";
 
 import styles from "./detail.module.scss";
+import CastList from "./components/CastList";
 
 const Detail = () => {
   const { category, id } = useParams();
@@ -41,8 +42,9 @@ const Detail = () => {
                   .map((genre, i) => <span key={i}>{genre.name}</span>)}
             </div>
             <p>{item.overview}</p>
-            <div className={styles.catst}>
-              <h3>Casts</h3>
+            <h3>Casts</h3>
+            <div>
+              <CastList id={item.id} />
             </div>
           </div>
         </div>

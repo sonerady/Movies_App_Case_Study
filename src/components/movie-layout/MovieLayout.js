@@ -16,6 +16,8 @@ const MovieLayout = (props) => {
 
   const { keyword } = useParams();
 
+  const [sortBy, setSortBy] = useState("");
+
   useEffect(() => {
     const getList = async () => {
       let response = null;
@@ -38,11 +40,13 @@ const MovieLayout = (props) => {
         };
         response = await tmdbApi.search(props.category, { params });
       }
+
       setItems(response.results);
+      console.log("items", items);
       setTotalPage(response.total_pages);
     };
     getList();
-  }, [props.category, keyword]);
+  }, [props.category, keyword, sortBy]);
 
   const loadMore = async () => {
     let response = null;
@@ -82,13 +86,27 @@ const MovieLayout = (props) => {
     window.addEventListener("scroll", onScroll);
     return () => window.removeEventListener("scroll", onScroll);
   });
+
+  const sortedItems =
+    (sortBy === "" && items) ||
+    (sortBy === "popularity" &&
+      items.sort((a, b) => b.popularity - a.popularity)) ||
+    (sortBy === "vote_average" &&
+      items.sort((a, b) => b.vote_average - a.vote_average));
+
   return (
     <>
       <div className=" mb-3">
-        <MovieSearch category={props.category} keyword={keyword} />
+        <MovieSearch
+          category={props.category}
+          setSortBy={setSortBy}
+          sortBy={sortBy}
+          keyword={keyword}
+        />
       </div>
+
       <div className={styles.movie_grid}>
-        {items.map((item, index) => {
+        {sortedItems.map((item, index) => {
           return (
             <MovieCard key={index} category={props.category} item={item} />
           );
@@ -127,6 +145,8 @@ const MovieSearch = (props) => {
     };
   }, [keyword, goToSearch]);
 
+  console.log("keyword", props.sortBy);
+
   return (
     <div className={styles.movie_search}>
       <Input
@@ -138,6 +158,16 @@ const MovieSearch = (props) => {
       <button className={styles.small} onClick={goToSearch}>
         Search
       </button>
+      <select
+        onChange={(e) => {
+          props.setSortBy(e.target.value);
+        }}
+        className={styles.small}
+      >
+        <option value="">Sort By</option>
+        <option value="popularity">Growing Popularity</option>
+        <option value="vote_average">Vote Average</option>
+      </select>
     </div>
   );
 };

@@ -31,6 +31,9 @@
       padding: 0.6rem;
       text-shadow: 0 0 0.5rem rgba(0, 0, 0, 0.5);
       height: auto;
+      span:nth-child(3) {
+        @include flex(center, flex-start);
+      }
       h3 {
         display: flex;
         white-space: nowrap;

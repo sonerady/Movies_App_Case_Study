@@ -3,28 +3,28 @@
 .container {
   position: relative;
   .content_wrapper {
-    background-color: rgba(255, 255, 255, 0.027);
-    backdrop-filter: blur(10px);
-    border-radius: $border-radius;
-    border: 1px solid rgba(255, 255, 255, 0.274);
     padding: 0.8rem;
     position: absolute;
     top: 25%;
     left: 25%;
     width: 50%;
-    margin-top: 3rem;
-    height: 90%;
     @include mobile {
       width: 84%;
       position: absolute;
       margin-top: 0rem !important;
       left: 8%;
+      height: auto !important;
+      padding-bottom: 2rem;
     }
     @include tablet {
       width: 84%;
       position: absolute;
       margin-top: 0rem !important;
       left: 8%;
+      height: auto !important;
+    }
+    h3 {
+      margin-top: 3rem;
     }
     h2 {
       font-size: 3.5rem;
@@ -47,13 +47,12 @@
         border: 1px solid $light;
         border-radius: $border-radius;
         padding: 0.2rem 0.5rem;
-        width: 100px;
       }
     }
   }
   .banner {
     position: relative;
-    height: 65vh !important;
+    height: 95vh !important;
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
@@ -103,6 +102,29 @@
       &__info {
         width: 70% !important;
       }
+    }
+  }
+}
+.casts {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));
+  gap: 10px;
+
+  &__item {
+    &__img {
+      padding-top: 160px;
+      background-size: cover;
+      margin-bottom: 0.5rem;
+      border-radius: 1rem;
+      @include mobile {
+        padding-top: 130px;
+      }
+    }
+
+    &__name {
+      margin-top: 0rem !important;
+      font-weight: bold;
+      font-size: 0.8rem;
     }
   }
 }
