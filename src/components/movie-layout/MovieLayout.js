@@ -75,7 +75,7 @@ const MovieLayout = (props) => {
       };
 
       setUrlNumber(params);
-      navigate(`/${category[props.category]}#${page + 1}`);
+      navigate(`/${category[props.category]}`);
 
       switch (props.category) {
         case category.movie:
