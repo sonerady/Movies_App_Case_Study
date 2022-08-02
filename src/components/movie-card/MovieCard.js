@@ -24,7 +24,10 @@ const MovieCard = (props) => {
     debouncedHandleMouseEnter.cancel();
   };
 
-  const momentDetail = localStorage.getItem("lng") === "tr" ? "Tr" : "En";
+  const momentDetail = localStorage.getItem("lng") === "tr" ? "tr" : "En";
+
+  let trLocale = require("moment/locale/tr");
+  moment.locale(momentDetail, trLocale);
 
   return (
     <div

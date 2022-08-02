@@ -27,7 +27,10 @@ const Detail = () => {
     getDetail();
   }, [category, id]);
 
-  const momentDetail = localStorage.getItem("lng") === "tr" ? "Tr" : "En";
+  const momentDetail = localStorage.getItem("lng") === "tr" ? "tr" : "En";
+
+  let trLocale = require("moment/locale/tr");
+  moment.locale(momentDetail, trLocale);
 
   const backButton = async () => {
     navigate(-1);
