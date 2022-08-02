@@ -126,10 +126,12 @@ const MovieLayout = (props) => {
       const scrollPosition = sessionStorage.getItem("scrollPosition");
       if (scrollPosition) {
         window.scrollTo(0, parseInt(scrollPosition, 10));
+      }
+      if (urlNumber === page) {
         sessionStorage.removeItem("scrollPosition");
       }
     }
-  }, [items]);
+  });
 
   return (
     <>
