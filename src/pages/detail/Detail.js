@@ -29,6 +29,13 @@ const Detail = () => {
 
   const momentDetail = localStorage.getItem("lng") === "tr" ? "Tr" : "En";
 
+  const backButton = async () => {
+    navigate(-1);
+    setTimeout(() => {
+      sessionStorage.removeItem("scrollPosition");
+    }, 5000);
+  };
+
   return (
     <>
       {item && (
@@ -44,7 +51,7 @@ const Detail = () => {
           <div className={styles.content_wrapper}>
             <div className={styles.top_content}>
               <h2>{item.title || item.name}</h2>
-              <div onClick={() => navigate(-1)}>
+              <div onClick={backButton}>
                 <OutlineButton>{t("back")}</OutlineButton>
               </div>
             </div>

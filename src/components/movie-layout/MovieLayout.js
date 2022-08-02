@@ -130,7 +130,7 @@ const MovieLayout = (props) => {
         sessionStorage.removeItem("scrollPosition");
       }
     }
-  });
+  }, [items]);
 
   window.onunload = function () {
     sessionStorage.removeItem("scrollPosition");
