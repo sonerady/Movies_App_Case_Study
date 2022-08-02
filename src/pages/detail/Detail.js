@@ -8,9 +8,12 @@ import styles from "./detail.module.scss";
 import CastList from "./components/CastList";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 const Detail = () => {
   const { category, id } = useParams();
+
+  const { t } = useTranslation();
 
   const [item, setItem] = useState(null);
   const navigate = useNavigate();
@@ -39,11 +42,11 @@ const Detail = () => {
             <div className={styles.top_content}>
               <h2>{item.title || item.name}</h2>
               <div onClick={() => navigate(-1)}>
-                <OutlineButton>back</OutlineButton>
+                <OutlineButton>{t("back")}</OutlineButton>
               </div>
             </div>
             <span className={styles.dates}>
-              Release Date: {moment(item.release_date).fromNow()}
+              {t("r_date")} {moment(item.release_date).locale("tr").fromNow()}
             </span>
             <div className={styles.genres_wrapper}>
               {item.genres &&
@@ -52,7 +55,7 @@ const Detail = () => {
                   .map((genre, i) => <span key={i}>{genre.name}</span>)}
             </div>
             <p>{item.overview}</p>
-            <h3>Casts</h3>
+            <h3>{t("casts")}</h3>
             <div>
               <CastList id={item.id} />
             </div>

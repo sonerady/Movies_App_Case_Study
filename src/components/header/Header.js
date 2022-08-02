@@ -12,11 +12,14 @@ const Header = () => {
   const { isLanguage, setIsLanguage } = useContext(ThemeContext);
   const headerNav = [
     {
-      name: isLanguage === "tr" ? "Anasayfa" : "Home",
+      name: localStorage.getItem("lng") === "tr" ? "Anasayfa" : "Home",
       path: "/",
     },
     {
-      name: isLanguage === "tr" ? "Popüler Filmler" : "Popular Movies",
+      name:
+        localStorage.getItem("lng") === "tr"
+          ? "Popüler Fimler"
+          : "Popular Movies",
       path: "/movie",
     },
   ];
