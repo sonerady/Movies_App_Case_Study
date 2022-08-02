@@ -13,7 +13,6 @@ import ThemeContext from "../../context/Theme";
 const TopHeader = (props) => {
   const { pathname } = useLocation();
   const data = useContext(ThemeContext);
-  console.log(data);
   return (
     <div
       className={styles.page_header}

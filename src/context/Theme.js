@@ -5,8 +5,6 @@ const ThemeContext = createContext({});
 export const ThemeProvider = ({ children }) => {
   const [isLanguage, setIsLanguage] = useState("en");
 
-  console.log(isLanguage);
-
   const values = { isLanguage, setIsLanguage };
 
   return (
