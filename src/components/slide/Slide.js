@@ -9,12 +9,15 @@ import { useParams } from "react-router-dom";
 import MovieCard from "../../components/movie-card/MovieCard";
 import TopHeader from "../../components/top-header/TopHeader";
 import { useHistory } from "react-router";
+import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 
 const Slide = (props) => {
   SwiperCore.use([Autoplay]);
 
   const [movieItems, setMovieItems] = useState([]);
+
+  const link = "/" + "movie" + "/";
 
   const [items, setItems] = useState([]);
 
@@ -73,7 +76,9 @@ const Slide = (props) => {
         <div className={`${styles.movie_grid} section mb-3 `}>
           {items.map((item, index) => {
             return (
-              <MovieCard key={index} category={props.category} item={item} />
+              <Link to={link + item.id}>
+                <MovieCard key={index} category={props.category} item={item} />
+              </Link>
             );
           })}
         </div>

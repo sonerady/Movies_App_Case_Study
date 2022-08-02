@@ -11,6 +11,7 @@ import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { useSearchParams } from "react-router-dom";
 import { t } from "i18next";
+import { Link } from "react-router-dom";
 
 const MovieLayout = (props) => {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -20,6 +21,8 @@ const MovieLayout = (props) => {
   const [page, setPage] = useState(1);
 
   const [totalPage, setTotalPage] = useState(0);
+
+  const link = "/" + "movie" + "/";
 
   const { keyword } = useParams();
 
@@ -64,6 +67,7 @@ const MovieLayout = (props) => {
   }, [props.category, keyword, sortBy]);
 
   const loadMore = async () => {
+    sessionStorage.setItem("page", true);
     let response = null;
     if (keyword === undefined) {
       const params = {
@@ -117,6 +121,16 @@ const MovieLayout = (props) => {
     (sortBy === "inc_average" &&
       items.sort((a, b) => b.vote_average - a.vote_average));
 
+  useEffect(() => {
+    if (items.length) {
+      const scrollPosition = sessionStorage.getItem("scrollPosition");
+      if (scrollPosition) {
+        window.scrollTo(0, parseInt(scrollPosition, 10));
+        sessionStorage.removeItem("scrollPosition");
+      }
+    }
+  }, [items]);
+
   return (
     <>
       <div className=" mb-3">
@@ -132,12 +146,19 @@ const MovieLayout = (props) => {
       <div className={styles.movie_grid}>
         {sortedItems.map((item, index) => {
           return (
-            <MovieCard
-              param
-              key={index}
-              category={props.category}
-              item={item}
-            />
+            <Link
+              to={link + item.id}
+              onClick={() =>
+                sessionStorage.setItem("scrollPosition", window.pageYOffset)
+              }
+            >
+              <MovieCard
+                param
+                key={index}
+                category={props.category}
+                item={item}
+              />
+            </Link>
           );
         })}
       </div>
