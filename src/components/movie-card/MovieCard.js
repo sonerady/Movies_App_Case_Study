@@ -24,6 +24,8 @@ const MovieCard = (props) => {
     debouncedHandleMouseEnter.cancel();
   };
 
+  const momentDetail = localStorage.getItem("lng") === "tr" ? "Tr" : "En";
+
   return (
     <div
       onMouseLeave={handlOnMouseLeave}
@@ -41,7 +43,8 @@ const MovieCard = (props) => {
           >
             <h3>{item.title || item.name}</h3>
             <span className={styles.release_date}>
-              {t("r_date")} {moment(item.release_date).fromNow()}
+              {t("r_date")}{" "}
+              {moment(item.release_date).locale(momentDetail).fromNow()}
             </span>
             <span>
               <AiFillStar />

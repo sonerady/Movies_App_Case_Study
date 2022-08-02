@@ -18,7 +18,7 @@ const Header = () => {
     {
       name:
         localStorage.getItem("lng") === "tr"
-          ? "Popüler Fimler"
+          ? "Populer Fimler"
           : "Popular Movies",
       path: "/movie",
     },
