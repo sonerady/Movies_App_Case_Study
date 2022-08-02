@@ -105,7 +105,6 @@ const MovieLayout = (props) => {
         loadMore();
       }
     };
-
     window.addEventListener("scroll", onScroll);
     return () => window.removeEventListener("scroll", onScroll);
   }, [items]);
@@ -132,6 +131,10 @@ const MovieLayout = (props) => {
       }
     }
   });
+
+  window.onunload = function () {
+    sessionStorage.removeItem("scrollPosition");
+  };
 
   return (
     <>
