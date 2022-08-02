@@ -143,7 +143,9 @@ const MovieLayout = (props) => {
       </div>
       {page < totalPage && (
         <div onClick={loadMore} className={styles.movie_grid__loadmore}>
-          <OutlineButton className={styles.small}>Load More</OutlineButton>
+          <OutlineButton className={styles.small}>
+            {t("load_more")}
+          </OutlineButton>
         </div>
       )}
     </>

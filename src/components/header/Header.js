@@ -1,22 +1,22 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import { useLocation } from "react-router-dom";
 import styles from "./header.module.scss";
 import { Link } from "react-router-dom";
 import { useRef } from "react";
 import logo from "../../assets/example_logo.png";
+import ThemeContext from "../../context/Theme";
 
 import { useTranslation } from "react-i18next";
 
 const Header = () => {
-  const [isLanguage, setIsLanguage] = useState("");
-
+  const { isLanguage, setIsLanguage } = useContext(ThemeContext);
   const headerNav = [
     {
-      name: isLanguage === "en" ? "Home" : "Anasayfa",
+      name: isLanguage === "tr" ? "Anasayfa" : "Home",
       path: "/",
     },
     {
-      name: isLanguage === "en" ? "Popular Movies" : "Popüler Filmler",
+      name: isLanguage === "tr" ? "Popüler Filmler" : "Popular Movies",
       path: "/movie",
     },
   ];
@@ -31,6 +31,7 @@ const Header = () => {
   const changeLanguage = (lang) => {
     i18n.changeLanguage(lang);
     setIsLanguage(lang);
+    localStorage.setItem("lng", lang);
   };
 
   useEffect(() => {

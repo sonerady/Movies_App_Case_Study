@@ -9,13 +9,16 @@ import RouteData from "./config/Route";
 import Catalog from "./pages/Catalog";
 import Detail from "./pages/detail/Detail";
 import Home from "./pages/Home";
+import { ThemeProvider } from "./context/Theme";
 
 function App() {
   return (
-    <Router>
-      <Header />
-      <RouteData />
-    </Router>
+    <ThemeProvider>
+      <Router>
+        <Header />
+        <RouteData />
+      </Router>
+    </ThemeProvider>
   );
 }
 

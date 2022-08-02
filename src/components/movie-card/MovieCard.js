@@ -50,7 +50,7 @@ const MovieCard = (props) => {
           </div>
         </div>
       </div>
-      {isHovered && <Link to={link}>Detail</Link>}
+      {isHovered && <Link to={link}>{t("detail")}</Link>}
     </div>
   );
 };

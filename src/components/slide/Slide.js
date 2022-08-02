@@ -9,6 +9,7 @@ import { useParams } from "react-router-dom";
 import MovieCard from "../../components/movie-card/MovieCard";
 import TopHeader from "../../components/top-header/TopHeader";
 import { useHistory } from "react-router";
+import { useTranslation } from "react-i18next";
 
 const Slide = (props) => {
   SwiperCore.use([Autoplay]);
@@ -23,6 +24,7 @@ const Slide = (props) => {
 
   const { keyword } = useParams();
 
+  const { t } = useTranslation();
   useEffect(() => {
     const getMovies = async () => {
       const params = { page: 1 };
@@ -66,7 +68,7 @@ const Slide = (props) => {
 
   return (
     <>
-      <TopHeader delete={"deneme"}>Some Upcoming Movies</TopHeader>
+      <TopHeader>{t("upcoming_text")}</TopHeader>
       <div className="container">
         <div className={`${styles.movie_grid} section mb-3 `}>
           {items.map((item, index) => {

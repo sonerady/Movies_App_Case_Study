@@ -7,9 +7,13 @@ import bgOther from "../../assets/bgOther.jpg";
 
 import { useLocation } from "react-router-dom";
 
+import { useContext } from "react";
+import ThemeContext from "../../context/Theme";
+
 const TopHeader = (props) => {
   const { pathname } = useLocation();
-
+  const data = useContext(ThemeContext);
+  console.log(data);
   return (
     <div
       className={styles.page_header}
