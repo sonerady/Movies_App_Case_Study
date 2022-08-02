@@ -136,6 +136,12 @@ const MovieLayout = (props) => {
     sessionStorage.removeItem("scrollPosition");
   };
 
+  useEffect(() => {
+    if (urlNumber <= 1) {
+      sessionStorage.removeItem("scrollPosition");
+    }
+  });
+
   return (
     <>
       <div className=" mb-3">

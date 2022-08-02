@@ -33,7 +33,7 @@ const Detail = () => {
     navigate(-1);
     setTimeout(() => {
       sessionStorage.removeItem("scrollPosition");
-    }, 5000);
+    }, 3000);
   };
 
   return (
