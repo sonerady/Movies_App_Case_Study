@@ -9,6 +9,7 @@ import CastList from "./components/CastList";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
+import localization from "moment/locale/tr";
 
 const Detail = () => {
   const { category, id } = useParams();
@@ -25,6 +26,8 @@ const Detail = () => {
     };
     getDetail();
   }, [category, id]);
+
+  const momentDetail = localStorage.getItem("lng") === "tr" ? "Tr" : "En";
 
   return (
     <>
@@ -46,7 +49,8 @@ const Detail = () => {
               </div>
             </div>
             <span className={styles.dates}>
-              {t("r_date")} {moment(item.release_date).locale("tr").fromNow()}
+              {t("r_date")}{" "}
+              {moment(item.release_date).locale(momentDetail).fromNow()}
             </span>
             <div className={styles.genres_wrapper}>
               {item.genres &&
