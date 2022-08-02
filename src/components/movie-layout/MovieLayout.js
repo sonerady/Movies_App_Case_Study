@@ -108,7 +108,7 @@ const MovieLayout = (props) => {
 
     window.addEventListener("scroll", onScroll);
     return () => window.removeEventListener("scroll", onScroll);
-  });
+  }, [items]);
 
   const sortedItems =
     (sortBy === "" && items) ||
