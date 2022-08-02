@@ -2,12 +2,19 @@ import React, { useState, useEffect, useRef, useCallback } from "react";
 import styles from "./movieLayout.module.scss";
 import MovieCard from "../../components/movie-card/MovieCard";
 import Button, { OutlineButton } from "../../components/button/Button";
+import { useLocation } from "react-router-dom";
 import InfiniteScroll from "react-infinite-scroller";
 import tmdbApi, { category, movieType } from "../../api/tmdbApi";
 import { useParams } from "react-router-dom";
 import Input from "../../components/input/Input";
 import { useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
+import { useSearchParams } from "react-router-dom";
+import { t } from "i18next";
+
 const MovieLayout = (props) => {
+  const [searchParams, setSearchParams] = useSearchParams();
+
   const [items, setItems] = useState([]);
 
   const [page, setPage] = useState(1);
@@ -20,13 +27,18 @@ const MovieLayout = (props) => {
 
   const [sortBy, setSortBy] = useState("asc_popularity");
 
-  console.log("sortBy", sortBy);
+  const { pathname } = useLocation();
+
+  const navigate = useNavigate();
+
+  const { t, i18n } = useTranslation();
 
   useEffect(() => {
     const getList = async () => {
       let response = null;
       if (keyword === undefined) {
         const params = {};
+
         switch (props.category) {
           case category.movie:
             response = await tmdbApi.getMoviesList(movieType.popular, {
@@ -46,7 +58,6 @@ const MovieLayout = (props) => {
       }
 
       setItems(response.results);
-      console.log("items", items);
       setTotalPage(response.total_pages);
     };
     getList();
@@ -58,6 +69,10 @@ const MovieLayout = (props) => {
       const params = {
         page: page + 1,
       };
+
+      setUrlNumber(params);
+      navigate(`/${category[props.category]}#${page + 1}`);
+
       switch (props.category) {
         case category.movie:
           response = await tmdbApi.getMoviesList(movieType.popular, {
@@ -106,6 +121,7 @@ const MovieLayout = (props) => {
     <>
       <div className=" mb-3">
         <MovieSearch
+          t={t}
           category={props.category}
           setSortBy={setSortBy}
           sortBy={sortBy}
@@ -158,18 +174,16 @@ const MovieSearch = (props) => {
     };
   }, [keyword, goToSearch]);
 
-  console.log("keyword", props.sortBy);
-
   return (
     <div className={styles.movie_search}>
       <Input
         type="text"
-        placeholder="Enter keyword"
+        placeholder={t("enter_keyword")}
         value={keyword}
         onChange={(e) => setKeyword(e.target.value)}
       />
       <button className={styles.small} onClick={goToSearch}>
-        Search
+        {t("search")}
       </button>
       <select
         onChange={(e) => {
@@ -177,10 +191,10 @@ const MovieSearch = (props) => {
         }}
         className={styles.small}
       >
-        <option value="asc_popularity">Asc. Popularity</option>
-        <option value="desc_popularity">Dec. Popularity</option>
-        <option value="inc_average">Inc. Vote </option>
-        <option value="dec_average">Dec. Vote </option>
+        <option value="asc_popularity">{t("asc_popularity")}</option>
+        <option value="desc_popularity">{t("desc_popularity")}</option>
+        <option value="inc_average">{t("inc_vote_average")}</option>
+        <option value="dec_average">{t("dec_vote_average")}</option>
       </select>
     </div>
   );

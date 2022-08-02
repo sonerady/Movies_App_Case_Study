@@ -7,13 +7,15 @@ import moment from "moment";
 import { category } from "../../api/tmdbApi";
 import apiConfig from "../../api/apiConfig";
 import { debounce } from "lodash";
+import { useTranslation } from "react-i18next";
 
 const MovieCard = (props) => {
   const item = props.item;
-  console.log(item);
   const [isHovered, setIsHovered] = useState(false);
   const link = "/" + "movie" + "/" + item.id;
   const bg = apiConfig.w500Image(item.poster_path || item.backdrop_path);
+
+  const { t } = useTranslation();
 
   const debouncedHandleMouseEnter = debounce(() => setIsHovered(true));
 
@@ -39,7 +41,7 @@ const MovieCard = (props) => {
           >
             <h3>{item.title || item.name}</h3>
             <span className={styles.release_date}>
-              R. date : {moment(item.release_date).fromNow()}
+              {t("r_date")} {moment(item.release_date).fromNow()}
             </span>
             <span>
               <AiFillStar />

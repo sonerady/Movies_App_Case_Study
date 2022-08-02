@@ -100,5 +100,15 @@
     backdrop-filter: blur(8px);
   }
 }
-
-
+.language_button {
+  display: flex;
+  gap: 1rem;
+  button {
+    padding: 0.2rem 0.5rem;
+    background: none;
+    border-radius: $border-radius;
+    color: $light;
+    border: 1px solid $main-color;
+    font-weight: bold;
+  }
+}

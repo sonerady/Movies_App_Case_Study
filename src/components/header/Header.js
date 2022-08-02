@@ -1,26 +1,37 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import styles from "./header.module.scss";
 import { Link } from "react-router-dom";
 import { useRef } from "react";
 import logo from "../../assets/example_logo.png";
 
-const headerNav = [
-  {
-    name: "Home",
-    path: "/",
-  },
-  {
-    name: "Popular Movies",
-    path: "/movie",
-  },
-];
+import { useTranslation } from "react-i18next";
 
 const Header = () => {
+  const [isLanguage, setIsLanguage] = useState("");
+
+  const headerNav = [
+    {
+      name: isLanguage === "en" ? "Home" : "Anasayfa",
+      path: "/",
+    },
+    {
+      name: isLanguage === "en" ? "Popular Movies" : "Popüler Filmler",
+      path: "/movie",
+    },
+  ];
+
   const { pathname } = useLocation();
   const headerRef = useRef(null);
 
   const active = headerNav.findIndex((item) => item.path == pathname);
+
+  const { t, i18n } = useTranslation();
+
+  const changeLanguage = (lang) => {
+    i18n.changeLanguage(lang);
+    setIsLanguage(lang);
+  };
 
   useEffect(() => {
     const shrinkHeader = () => {
@@ -44,7 +55,7 @@ const Header = () => {
       <div className={`${styles.header__wrap} container`}>
         <div className={`${styles.logo}`}>
           <img src={logo} alt="" />
-          <Link to="/">Study Case</Link>
+          <Link to="/">{t("logo_text")}</Link>
         </div>
 
         <ul className={`${styles.header__nav}`}>
@@ -59,7 +70,10 @@ const Header = () => {
             );
           })}
         </ul>
-        <span>language</span>
+        <div className={styles.language_button}>
+          <button onClick={() => changeLanguage("en")}>EN</button>
+          <button onClick={() => changeLanguage("tr")}>TR</button>
+        </div>
       </div>
     </div>
   );
