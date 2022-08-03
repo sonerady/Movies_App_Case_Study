@@ -12,5 +12,6 @@
   "upcoming_text": "Gelecek Bazı Filmler",
   "load_more": "Daha Fazla Yükle",
   "back": "Geri",
-  "casts": "Oyuncular"
+  "casts": "Oyuncular",
+  "text_error": "Desteklenmeyen dil..."
 }

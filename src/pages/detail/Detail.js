@@ -71,7 +71,7 @@ const Detail = () => {
                   .slice(0, 5)
                   .map((genre, i) => <span key={i}>{genre.name}</span>)}
             </div>
-            <p>{item.overview}</p>
+            <p>{item.overview ? item.overview : t("text_error")}</p>
             <h3>{t("casts")}</h3>
             <div>
               <CastList id={item.id} />

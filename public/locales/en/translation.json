@@ -12,5 +12,6 @@
   "upcoming_text": "Some Upcoming Movies",
   "load_more": "Load More",
   "back": "Back",
-  "casts": "Casts"
+  "casts": "Casts",
+  "text_error": "Not Supported Language"
 }
