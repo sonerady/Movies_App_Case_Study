@@ -32,9 +32,9 @@ const Header = () => {
   const { t, i18n } = useTranslation();
 
   const changeLanguage = async (lang) => {
-    await i18n.changeLanguage(lang);
-    await setIsLanguage(lang);
-    await localStorage.setItem("lng", lang);
+    i18n.changeLanguage(lang);
+    setIsLanguage(lang);
+    localStorage.setItem("lng", lang);
   };
 
   useEffect(() => {

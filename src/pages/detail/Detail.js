@@ -16,7 +16,7 @@ import { useContext } from "react";
 const Detail = () => {
   const { category, id } = useParams();
   const { isLanguage, setIsLanguage } = useContext(ThemeContext);
-  const lang = isLanguage;
+  const lang = localStorage.getItem("lng");
   const { t } = useTranslation();
 
   const [item, setItem] = useState(null);
@@ -71,7 +71,9 @@ const Detail = () => {
                   .slice(0, 5)
                   .map((genre, i) => <span key={i}>{genre.name}</span>)}
             </div>
-            <p>{item.overview ? item.overview : t("text_error")}</p>
+            <p data-testid="overview">
+              {item.overview ? item.overview : t("text_error")}
+            </p>
             <h3>{t("casts")}</h3>
             <div>
               <CastList id={item.id} />
