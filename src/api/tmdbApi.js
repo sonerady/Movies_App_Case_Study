@@ -1,3 +1,4 @@
+import apiConfig from "./apiConfig";
 import axiosClient from "./axiosClient";
 
 export const category = {
@@ -25,8 +26,12 @@ const tmdbApi = {
     const url = "search/" + category[cate];
     return axiosClient.get(url, params);
   },
-  detail: (cate, id, params) => {
-    const url = category[cate] + "/" + id;
+  detail: async (cate, id, params, lang) => {
+    const url =
+      category[cate] +
+      "/" +
+      id +
+      `?api_key=${apiConfig.apiKey}&language=${lang}`;
     return axiosClient.get(url, params);
   },
   credits: (cate, id) => {

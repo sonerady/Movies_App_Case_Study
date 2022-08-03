@@ -10,22 +10,25 @@ import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import localization from "moment/locale/tr";
+import ThemeContext from "../../context/Theme";
+import { useContext } from "react";
 
 const Detail = () => {
   const { category, id } = useParams();
-
+  const { isLanguage, setIsLanguage } = useContext(ThemeContext);
+  const lang = isLanguage;
   const { t } = useTranslation();
 
   const [item, setItem] = useState(null);
   const navigate = useNavigate();
   useEffect(() => {
     const getDetail = async () => {
-      const response = await tmdbApi.detail(category, id, { params: {} });
+      const response = await tmdbApi.detail(category, id, { params: {} }, lang);
       setItem(response);
       window.scrollTo(0, 0);
     };
     getDetail();
-  }, [category, id]);
+  }, [category, id, lang]);
 
   const momentDetail = localStorage.getItem("lng") === "tr" ? "tr" : "En";
 
