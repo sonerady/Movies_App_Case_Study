@@ -1,4 +1,4 @@
-# Hatırlartma
+# Hatırlatma
 Projede test yazmak opsiyonel olmasına rağmen yazmak istedim. İş hayatımda devamli olarak test yazan bir developer olarak bu projede react v18 ve sanırım react router dom v6 versiyonundan ötürü testlerimi bir türlü yazamadım. Hata aldım ve bu hataların üstüne gitmeye calıştım. Bundan dolayı case süresinin de çok uzamaması için test yazmadan önce projeyi önden göndermeye (push) calıştım.
 
 
